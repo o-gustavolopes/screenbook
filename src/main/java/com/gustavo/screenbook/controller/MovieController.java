@@ -1,25 +1,32 @@
 package com.gustavo.screenbook.controller;
 
 import com.gustavo.screenbook.model.Movie;
+import com.gustavo.screenbook.model.TMDbMovie;
 import com.gustavo.screenbook.service.MovieService;
-import lombok.RequiredArgsConstructor;
+import com.gustavo.screenbook.service.TMDbService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/movies")
-@RequiredArgsConstructor // Lombok vai gerar o construtor automaticamente
 public class MovieController {
-    private final MovieService movieService;
+    @Autowired private MovieService movieService;
+    @Autowired private TMDbService tmdbService;
 
     @GetMapping
-    public List<Movie> getMovies() {
+    public List<Movie> getAllMovies() {
         return movieService.getAllMovies();
     }
 
     @PostMapping
-    public Movie createMovie(@RequestBody Movie movie) {
+    public Movie addMovie(@RequestBody Movie movie) {
         return movieService.createMovie(movie);
+    }
+
+    @GetMapping("/search")
+    public TMDbMovie searchMovies(@RequestParam String title) {
+        return tmdbService.searchMovie(title);
     }
 }
