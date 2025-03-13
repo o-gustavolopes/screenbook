@@ -8,7 +8,7 @@ import org.springframework.web.client.RestTemplate;
 
 @Service
 public class TMDbService {
-    private final String API_KEY = "0c8bafaf0d6e9aae8f45f8b49f1dada4";  // Substitua pela sua chave de API
+    private final String API_KEY = "0000";  // Substitua pela sua chave de API
     private final String BASE_URL = "https://api.themoviedb.org/3/search/movie";  // Endpoint de busca por filme
 
     public TMDbMovie searchMovie(String title) {
